@@ -1,41 +1,40 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-
     <title>Game Guide</title>
 </head>
 
 <body class="grey lighten-3">
 
-    <!-- NAVBAR -->
-    <nav class="z-depth-0 grey lighten-4">
-        <div class="nav-wrapper container">
-            <a href="#" class="brand-logo">
-                <img src="img/logo.png" style="width: 180px; margin-top: 10px;">
-            </a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="logged-in">
-                    <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
-                </li>
-                <li class="logged-in">
-                    <a href="#" class="grey-text" id="logout">Logout</a>
-                </li>
-                <li class="logged-in">
-                    <a href="#" class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
-                </li>
-                <li class="logged-out">
-                    <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
-                </li>
-                <li class="logged-out">
-                    <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
-                </li>
-            </ul>
-        </div>
+     <!-- NAVBAR -->
+    <nav class=" z-depth-0 grey lighten-4">
+    <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">
+            <img src="img/logo.png" style="width: 180px; margin-top: 10px;">
+        </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="logged-in">
+                <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+            </li>
+            <li class="logged-in">
+                <a href="#" class="grey-text" id="logout">Logout</a>
+            </li>
+            <li class="logged-in">
+                <a href="#" class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
+            </li>
+            <li class="logged-out">
+                <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+            </li>
+            <li class="logged-out">
+                <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+            </li>
+        </ul>
+    </div>
     </nav>
 
     <!-- SIGN UP MODAL -->
@@ -79,6 +78,7 @@
         <div class="modal-content center-align">
             <h4>Account details</h4><br />
             <div class="account-details"></div>
+            <div class="account-extras"></div>
         </div>
     </div>
 
@@ -122,28 +122,12 @@
         </ul>
     </div>
 
-    <!-- Firebase scripts -->
-    <!-- Firebase App -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+    <script>
 
-    <!-- Firebase Analytics -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-analytics.js"></script>
-
-    <!-- Firebase Authentication -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
-
-    <!-- Firebase Firestore -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
-
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        // Initialize Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyCGtY8niebfTOfMLLeQGTZZOH1ssKg96pU",
             authDomain: "game-guide-11375.firebaseapp.com",
@@ -154,17 +138,15 @@
             measurementId: "G-SK8FLNQ5BC"
         };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const auth = firebase.auth(); // Corrected from "firbaese.auth()"
-        const db = firebase.firestore(); // Corrected from "firebase.firbaese()"
+        firebase.initializeApp(firebaseConfig);
 
-        // Update firestore settings
+        // make auth and firestore references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // update firestore settings
         db.settings({ timestampsInSnapshots: true });
-
     </script>
-
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="scripts/auth.js"></script>
