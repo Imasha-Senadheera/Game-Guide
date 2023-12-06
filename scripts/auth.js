@@ -38,9 +38,12 @@ signupForm.addEventListener('submit', (e) => {
   const email = signupForm['signup-email'].value;
   const password = signupForm['signup-password'].value;
 
-  // sign up the user
+  // sign up the user & add firestore data
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
-    console.log(cred.user);
+    return db.collection('users').doc(cred.user.uid).set({
+      bio: signupForm['signup-bio'].value
+    });
+  }).then(() => {
     // close the signup modal & reset form
     const modal = document.querySelector('#modal-signup');
     M.Modal.getInstance(modal).close();
